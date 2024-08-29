@@ -22,4 +22,13 @@ const app = express();
 
 app.use(express.json());
 app.use("/api/auth", authRouter);
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "internal server error";
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
 app.listen(port, () => console.log(`server running on ${port}`));

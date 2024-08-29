@@ -1,11 +1,12 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const errorHandler = require("../utilis/errorHandler");
 
-const authController = async (req, res) => {
+const authController = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
-      return res.status(400).json("all fields are neccesary");
+      return next(errorHandler(400, "all fileds are required"));
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -14,7 +15,7 @@ const authController = async (req, res) => {
     await user.save();
     res.status(201).json("User created successfully");
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
