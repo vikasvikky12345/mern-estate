@@ -18,7 +18,7 @@ function Header() {
                 <Link to="/about">
                 <li className='hidden sm:inline text-slate-700 hover:underline cursor-pointer hover:text-slate-800'>About</li>
                 </Link>
-                <Link to="/signin">
+                <Link to="/signup">
                     <li className='hidden sm:inline text-slate-700 hover:underline cursor-pointer hover:text-slate-800'>Sign In</li>
                 </Link>
                 

@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* body {
+    @apply bg-gray-100;
+} */
+ body{
+    background-color: rgb(241,245,241);
+ }
