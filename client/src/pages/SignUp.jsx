@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ export default function SignUp() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ export default function SignUp() {
       if (response.data.success === false) {
         setError(response.data.message);
       } else {
-        console.log("User signed up successfully!");
+        navigate("/signin");
       }
 
     } catch (err) {
@@ -85,9 +87,10 @@ export default function SignUp() {
         </form>
         <p className="text-slate-600 mt-6">
           Already have an account?{" "}
-          <a href="/signin" className="text-slate-800 font-bold">
+          {/* <a href="/signin" className="text-slate-800 font-bold">
             Sign In
-          </a>
+          </a> */}
+          <Link to="/signin" className="text-slate-800 font-bold">Sign In</Link>
         </p>
       </div>
     </div>
